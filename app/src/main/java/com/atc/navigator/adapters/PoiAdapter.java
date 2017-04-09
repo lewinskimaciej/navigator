@@ -1,4 +1,4 @@
-package com.atc.navigator.holders;
+package com.atc.navigator.adapters;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -109,13 +109,15 @@ public class PoiAdapter extends RecyclerView.Adapter {
 
     public void removePoi(int position) {
         poiList.remove(position);
-        notifyDataSetChanged();
-        if (callback != null) {
-            if (poiList.size() == 0) {
+        if (chosenPoi == position) {
+            if (callback != null) {
                 callback.onNoPoiChosen();
             }
+            chosenPoi = -1;
+        } else if (position < chosenPoi) {
+            chosenPoi -= 1;
         }
-        chosenPoi = -1;
+        notifyDataSetChanged();
     }
 
     public List<PoiModel> getData() {

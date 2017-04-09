@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.atc.navigator.R;
-import com.atc.navigator.holders.PoiAdapter;
+import com.atc.navigator.adapters.PoiAdapter;
 import com.atc.navigator.models.PoiModel;
 import com.atc.navigator.utils.CoordinatesUtil;
 import com.github.jksiezni.permissive.Permissive;
@@ -32,6 +32,8 @@ import timber.log.Timber;
 public class MainActivity extends AppCompatActivity
         implements PoiAdapter.PoiCallback,
         LocationListener {
+
+    public static final int UPDATE_INTERVAL = 1000;
 
     @BindView(R.id.main_activity_container)
     ConstraintLayout mainActivityContainer;
@@ -62,6 +64,8 @@ public class MainActivity extends AppCompatActivity
     Location currentLocation;
 
     PoiModel chosenPoiModel;
+
+    int lastAddedNumber = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +127,7 @@ public class MainActivity extends AppCompatActivity
             hideSnackbar();
 
             locationManager.requestLocationUpdates(
-                    LocationManager.GPS_PROVIDER, 2000, 1, this);
+                    LocationManager.GPS_PROVIDER, UPDATE_INTERVAL, 1, this);
 
             Location lastKnownLocation =
                     locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -141,7 +145,7 @@ public class MainActivity extends AppCompatActivity
 
     private void addPoi(Location location) {
         PoiModel poiModel = new PoiModel();
-        String poiName = getString(R.string.poi_default_name) + (adapter.getData().size() + 1);
+        String poiName = getString(R.string.poi_default_name) + lastAddedNumber++;
         poiModel.setPoiName(poiName);
         poiModel.setPoiDate(new DateTime());
         poiModel.setPoiCoordinates(location);
@@ -165,14 +169,15 @@ public class MainActivity extends AppCompatActivity
 
     private void setNumberValues() {
         if (chosenPoiModel != null) {
-            float distanceToPoi = chosenPoiModel.getPoiCoordinates().distanceTo(currentLocation);
-            distance.setText(String.valueOf(distanceToPoi));
+            int distanceToPoi = (int) chosenPoiModel.getPoiCoordinates().distanceTo(currentLocation);
+            String distanceText = distanceToPoi + "m";
+            distance.setText(distanceText);
 
             float angle = chosenPoiModel.getPoiCoordinates().bearingTo(currentLocation);
-            arrow.setRotation(angle);
+            arrow.animate().rotation(angle).setDuration(UPDATE_INTERVAL);
         } else {
             distance.setText("0");
-            arrow.setRotation(0f);
+            arrow.animate().rotation(0f).setDuration(UPDATE_INTERVAL);
         }
     }
 
