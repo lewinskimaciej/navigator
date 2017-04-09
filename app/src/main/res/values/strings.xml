@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Navigator</string>
+    <string name="gps_state_description">Current GPS state icon</string>
+    <string name="current_location">Current location:</string>
+    <string name="destination_arrow_description">Icon pointing to destination</string>
+    <string name="choose_poi_hint">Choose POI to see the distance</string>
+</resources>
