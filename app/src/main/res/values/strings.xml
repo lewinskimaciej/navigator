@@ -4,4 +4,6 @@
     <string name="current_location">Current location:</string>
     <string name="destination_arrow_description">Icon pointing to destination</string>
     <string name="choose_poi_hint">Choose POI to see the distance</string>
+    <string name="coordinates">Coordinates:</string>
+    <string name="poi_checkbox_description">Track point of interest</string>
 </resources>
