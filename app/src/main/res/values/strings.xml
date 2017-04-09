@@ -6,4 +6,9 @@
     <string name="choose_poi_hint">Choose POI to see the distance</string>
     <string name="coordinates">Coordinates:</string>
     <string name="poi_checkbox_description">Track point of interest</string>
+    <string name="permission_denied">Navigator needs GPS permission to run</string>
+    <string name="grant_permission_action">RETRY</string>
+    <string name="gps_disabled">Enable GPS for the Navigator to work</string>
+    <string name="gps_disabled_retry">RETRY</string>
+    <string name="poi_default_name">POI #</string>
 </resources>

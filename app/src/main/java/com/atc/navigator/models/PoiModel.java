@@ -1,10 +1,12 @@
 package com.atc.navigator.models;
 
+import android.location.Location;
+
 import org.joda.time.DateTime;
 
 public class PoiModel {
     private String poiName;
-    private String poiCoordinates;
+    private Location poiCoordinates;
     private DateTime poiDate;
 
     public String getPoiName() {
@@ -16,11 +18,11 @@ public class PoiModel {
         return this;
     }
 
-    public String getPoiCoordinates() {
+    public Location getPoiCoordinates() {
         return poiCoordinates;
     }
 
-    public PoiModel setPoiCoordinates(String poiCoordinates) {
+    public PoiModel setPoiCoordinates(Location poiCoordinates) {
         this.poiCoordinates = poiCoordinates;
         return this;
     }

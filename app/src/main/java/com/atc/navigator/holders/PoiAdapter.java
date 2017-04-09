@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.atc.navigator.R;
 import com.atc.navigator.models.PoiModel;
+import com.atc.navigator.utils.CoordinatesUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,6 +115,11 @@ public class PoiAdapter extends RecyclerView.Adapter {
                 callback.onNoPoiChosen();
             }
         }
+        chosenPoi = -1;
+    }
+
+    public List<PoiModel> getData() {
+        return poiList;
     }
 
     class PoiHolder extends RecyclerView.ViewHolder {
@@ -140,8 +146,11 @@ public class PoiAdapter extends RecyclerView.Adapter {
             poiModel = poiList.get(position);
 
             poiName.setText(poiModel.getPoiName());
-            poiCoordinates.setText(poiModel.getPoiCoordinates());
             poiDate.setText(poiModel.getPoiDate().toString("dd/MM/yyyy HH:mm:ss"));
+
+            String poiCoordinatesText = CoordinatesUtil.getLatString(poiModel.getPoiCoordinates()) +
+                    CoordinatesUtil.getLongString(poiModel.getPoiCoordinates());
+            poiCoordinates.setText(poiCoordinatesText);
 
             if (chosenPoi == position) {
                 poiCheckbox.setColorFilter(chosenPoiColor);
