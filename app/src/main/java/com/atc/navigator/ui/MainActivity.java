@@ -35,25 +35,17 @@ public class MainActivity extends AppCompatActivity
 
     public static final int UPDATE_INTERVAL = 1000;
 
-    @BindView(R.id.main_activity_container)
-    ConstraintLayout mainActivityContainer;
+    @BindView(R.id.main_activity_container) ConstraintLayout mainActivityContainer;
 
-    @BindView(R.id.current_location_lat)
-    TextView currentLocationLat;
-    @BindView(R.id.current_location_long)
-    TextView currentLocationLong;
+    @BindView(R.id.current_location_lat) TextView currentLocationLat;
+    @BindView(R.id.current_location_long) TextView currentLocationLong;
 
-    @BindView(R.id.arrow)
-    ImageView arrow;
-    @BindView(R.id.distance)
-    TextView distance;
-    @BindView(R.id.choose_poi_hint)
-    TextView choosePoiHint;
+    @BindView(R.id.arrow) ImageView arrow;
+    @BindView(R.id.distance) TextView distance;
+    @BindView(R.id.choose_poi_hint) TextView choosePoiHint;
 
-    @BindView(R.id.poi_container)
-    CardView poiContainer;
-    @BindView(R.id.poi_list)
-    RecyclerView poiListRecycler;
+    @BindView(R.id.poi_container) CardView poiContainer;
+    @BindView(R.id.poi_list) RecyclerView poiListRecycler;
 
     PoiAdapter adapter;
 

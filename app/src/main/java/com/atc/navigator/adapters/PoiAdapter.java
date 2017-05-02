@@ -29,16 +29,16 @@ public class PoiAdapter extends RecyclerView.Adapter {
         void onNoPoiChosen();
     }
 
-    List<PoiModel> poiList;
+    private List<PoiModel> poiList;
 
-    PoiCallback callback;
+    private PoiCallback callback;
 
-    int chosenPoi = -1;
+    private int chosenPoi = -1;
 
-    int chosenPoiColor;
-    int chosenPoiNameColor;
-    int defaultPoiColor;
-    int defaultPoiNameColor;
+    private int chosenPoiColor;
+    private int chosenPoiNameColor;
+    private int defaultPoiColor;
+    private int defaultPoiNameColor;
 
     public PoiAdapter(Context context, PoiCallback callback) {
         this.callback = callback;
@@ -84,7 +84,7 @@ public class PoiAdapter extends RecyclerView.Adapter {
         notifyItemChanged(position);
     }
 
-    public void choosePoi(int position) {
+    private void choosePoi(int position) {
         if (chosenPoi != position) {
             if (chosenPoi != -1) {
                 int lastChosenPoi = chosenPoi;
@@ -107,7 +107,7 @@ public class PoiAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public void removePoi(int position) {
+    private void removePoi(int position) {
         poiList.remove(position);
         if (chosenPoi == position) {
             if (callback != null) {
@@ -126,14 +126,10 @@ public class PoiAdapter extends RecyclerView.Adapter {
 
     class PoiHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.poi_checkbox)
-        ImageView poiCheckbox;
-        @BindView(R.id.poi_name)
-        TextView poiName;
-        @BindView(R.id.poi_coordinates)
-        TextView poiCoordinates;
-        @BindView(R.id.poi_date)
-        TextView poiDate;
+        @BindView(R.id.poi_checkbox) ImageView poiCheckbox;
+        @BindView(R.id.poi_name) TextView poiName;
+        @BindView(R.id.poi_coordinates) TextView poiCoordinates;
+        @BindView(R.id.poi_date) TextView poiDate;
 
         PoiModel poiModel;
         int position;
